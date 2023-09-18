@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 # Replace with the URL of the weather website with the 10-day forecast
-url = "https://www.wunderground.com/forecast/us/oh/youngstown"
+url = "https://weather.com/weather/tenday/l/1ba33abe593271cd38c3fde63f30049909290e371d58446b56b80a43ccd652f2"
 
 # Send an HTTP GET request to fetch the webpage
 response = requests.get(url)
@@ -11,10 +11,10 @@ response = requests.get(url)
 soup = BeautifulSoup(response.content, 'html.parser')
 
 #Locate and extract the weather data by inspecting the HTML structure
-date = soup.find("div", class_="obs-date").text
-#temperature = soup.find("div", class_="forecast").text
-#conditions = soup.find("div", class_="obs-phrase").text
+date = soup.find("div", class_="DetailsSummary--daypartName--kbngc").text
+temperature = soup.find("div", class_="DetailsSummary--temperature--1kVVp").text
+conditions = soup.find("div", class_="DetailsSummary--condition--2JmHb").text
 
 print(f"Date: {date}")
-#print(f"Temperature: {temperature}")
-#print(f"Conditions: {conditions}")
+print(f"Temperature: {temperature}")
+print(f"Conditions: {conditions}")
